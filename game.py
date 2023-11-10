@@ -12,10 +12,10 @@ choices = {
     "3": "Scissors",
 }
 
-name = input("Welcome to My Game! What's your name?\n").upper()
+name = input("Welcome to My Game! What's your name?\n").capitalize()
 
 while True:
-    print(f"\n{name.capitalize()}, please select: ")
+    print(f"\n{name}, please select: ")
     print_keys_values(choices)
     player_choice = input().capitalize()
     if player_choice in choices:
@@ -26,15 +26,13 @@ while True:
 
 computer_choice = random.choice(list(choices.keys()))
 
-print(f"{name.capitalize()} picked {choices[player_choice]}, Computer picked {choices[computer_choice]}")
+print(f"{name} picked {choices[player_choice]}, Computer picked {choices[computer_choice]}")
 
 if choices[player_choice] == choices[computer_choice]:
-    print(f"~~~~~~~~~~{name} and Computer TIE!~~~~~~~~~~")
-elif choices[player_choice] == "Rock" and choices[computer_choice] == "Scissors":
-    print(f"~~~~~~~~~~{name} WINS!~~~~~~~~~~")
-elif choices[player_choice] == "Paper" and choices[computer_choice] == "Rock":
-    print(f"~~~~~~~~~~{name} WINS!~~~~~~~~~~")
-elif choices[player_choice] == "Scissors" and choices[computer_choice] == "Paper":
-    print(f"~~~~~~~~~~{name} WINS!~~~~~~~~~~")
+    print(f"~~~~~~~~~~{name.upper()} and Computer TIE!~~~~~~~~~~")
+elif (choices[player_choice] == "Rock" and choices[computer_choice] == "Scissors") \
+        or (choices[player_choice] == "Paper" and choices[computer_choice] == "Rock") \
+        or (choices[player_choice] == "Scissors" and choices[computer_choice] == "Paper"):
+    print(f"~~~~~~~~~~{name.upper()} WINS!~~~~~~~~~~")
 else:
     print("~~~~~~~~~~COMPUTER WINS!~~~~~~~~~~")
