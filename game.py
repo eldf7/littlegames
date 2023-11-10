@@ -1,30 +1,40 @@
 import random
 
-name = input("Welcome to My Game! What's your name?\n").upper()
-while True:
-    choice = input(f"\n{name.capitalize()}, please select: \n (1) Rock\n (2) Paper\n (3) Scissor\n").lower()
-    if choice in ["1", "2", "3", "rock", "paper", "scissor"]:
-        break
 
-player_choice = {
+def print_keys_values(keys_values):
+    for key, value in keys_values.items():
+        print(f"({key}) {value} ")
+
+
+choices = {
     "1": "Rock",
     "2": "Paper",
-    "3": "Scissor",
-    "rock": "Rock",
-    "paper": "Paper",
-    "scissor": "Scissor"
+    "3": "Scissors",
 }
 
-computer_choice = random.choice(["Rock", "Paper", "Scissor"])
-print(f"You picked {player_choice[choice]}, Computer picked {computer_choice}")
+name = input("Welcome to My Game! What's your name?\n").upper()
 
-if player_choice[choice] == computer_choice:
+while True:
+    print(f"\n{name.capitalize()}, please select: ")
+    print_keys_values(choices)
+    player_choice = input().capitalize()
+    if player_choice in choices:
+        break
+    if player_choice in choices.values():
+        player_choice = next(key for key, value in choices.items() if value == player_choice)
+        break
+
+computer_choice = random.choice(list(choices.keys()))
+
+print(f"{name.capitalize()} picked {choices[player_choice]}, Computer picked {choices[computer_choice]}")
+
+if choices[player_choice] == choices[computer_choice]:
     print(f"~~~~~~~~~~{name} and Computer TIE!~~~~~~~~~~")
-elif player_choice[choice] == "Rock" and computer_choice == "Scissor":
+elif choices[player_choice] == "Rock" and choices[computer_choice] == "Scissors":
     print(f"~~~~~~~~~~{name} WINS!~~~~~~~~~~")
-elif player_choice[choice] == "Paper" and computer_choice == "Rock":
+elif choices[player_choice] == "Paper" and choices[computer_choice] == "Rock":
     print(f"~~~~~~~~~~{name} WINS!~~~~~~~~~~")
-elif player_choice[choice] == "Scissor" and computer_choice == "Paper":
+elif choices[player_choice] == "Scissors" and choices[computer_choice] == "Paper":
     print(f"~~~~~~~~~~{name} WINS!~~~~~~~~~~")
 else:
     print("~~~~~~~~~~COMPUTER WINS!~~~~~~~~~~")
