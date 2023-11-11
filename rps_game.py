@@ -12,7 +12,7 @@ choices = {
     "3": "Scissors",
 }
 
-name = input("Welcome to My Game! What's your name?\n").capitalize()
+name = input("Welcome to My Game! What's your name?\n").title()
 
 while True:
     print(f"\n{name}, please select: ")
