@@ -40,8 +40,8 @@ while True:
     else:
         print("🤖 COMPUTER WINS!")
 
-    isRepeat = input("****play again?**** (press y to continue): ").strip()
-    if isRepeat in ("y", ""):
+    repeat_play = input("****play again?**** (press y to continue): ").strip().lower()
+    if repeat_play in ("y", "yes", ""):
         continue
     else:
         sys.exit("👋 Thanks for playing my game! Byeeee. \n")
