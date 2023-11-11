@@ -18,11 +18,12 @@ while True:
     print(f"\n{name}, please select: ")
     print_keys_values(choices)
     player_choice = input().capitalize()
-    if player_choice in choices:
+    try:
+        player_choice = next(key for key, value in choices.items() if
+                             value == player_choice or key == player_choice)
         break
-    if player_choice in choices.values():
-        player_choice = next(key for key, value in choices.items() if value == player_choice)
-        break
+    except StopIteration:
+        continue
 
 computer_choice = random.choice(list(choices.keys()))
 
