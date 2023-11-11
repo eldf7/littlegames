@@ -17,7 +17,7 @@ name = input("Welcome to My Game! What's your name?\n").capitalize()
 while True:
     print(f"\n{name}, please select: ")
     print_keys_values(choices)
-    player_choice = input().capitalize()
+    player_choice = input().strip().capitalize()
     try:
         player_choice = next(key for key, value in choices.items() if
                              value == player_choice or key == player_choice)
