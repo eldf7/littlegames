@@ -27,13 +27,13 @@ while True:
 
 computer_choice = random.choice(list(choices.keys()))
 
-print(f"{name} picked {choices[player_choice]}, Computer picked {choices[computer_choice]}")
+print(f"\n{name} picked {choices[player_choice]}, Computer picked {choices[computer_choice]}")
 
 if choices[player_choice] == choices[computer_choice]:
-    print(f"~~~~~~~~~~{name.upper()} and Computer TIE!~~~~~~~~~~")
+    print(f"😳 {name.upper()} AND COMPUTER TIE!")
 elif (choices[player_choice] == "Rock" and choices[computer_choice] == "Scissors") \
         or (choices[player_choice] == "Paper" and choices[computer_choice] == "Rock") \
         or (choices[player_choice] == "Scissors" and choices[computer_choice] == "Paper"):
-    print(f"~~~~~~~~~~{name.upper()} WINS!~~~~~~~~~~")
+    print(f"🎉 {name.upper()} WINS!")
 else:
-    print("~~~~~~~~~~COMPUTER WINS!~~~~~~~~~~")
+    print("🤖 COMPUTER WINS!")
