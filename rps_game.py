@@ -1,4 +1,5 @@
 import random
+import sys
 
 
 def print_keys_values(keys_values):
@@ -12,28 +13,35 @@ choices = {
     "3": "Scissors",
 }
 
-name = input("Welcome to My Game! What's your name?\n").title()
+name = input("👋 Welcome to my game! What's your name?\n").title()
 
 while True:
-    print(f"\n{name}, please select: ")
-    print_keys_values(choices)
-    player_choice = input().strip().capitalize()
-    try:
-        player_choice = next(key for key, value in choices.items() if
-                             value == player_choice or key == player_choice)
-        break
-    except StopIteration:
+    while True:
+        print(f"\n{name}, please select: ")
+        print_keys_values(choices)
+        player_choice = input().strip().capitalize()
+        try:
+            player_choice = next(key for key, value in choices.items() if
+                                 value == player_choice or key == player_choice)
+            break
+        except StopIteration:
+            continue
+
+    computer_choice = random.choice(list(choices.keys()))
+
+    print(f"\n{name} picked {choices[player_choice]}, Computer picked {choices[computer_choice]}")
+
+    if choices[player_choice] == choices[computer_choice]:
+        print(f"😳 {name.upper()} AND COMPUTER TIE!")
+    elif (choices[player_choice] == "Rock" and choices[computer_choice] == "Scissors") \
+            or (choices[player_choice] == "Paper" and choices[computer_choice] == "Rock") \
+            or (choices[player_choice] == "Scissors" and choices[computer_choice] == "Paper"):
+        print(f"🎉 {name.upper()} WINS!")
+    else:
+        print("🤖 COMPUTER WINS!")
+
+    isRepeat = input("****play again?**** (press y to continue): ").strip()
+    if isRepeat in ("y", ""):
         continue
-
-computer_choice = random.choice(list(choices.keys()))
-
-print(f"\n{name} picked {choices[player_choice]}, Computer picked {choices[computer_choice]}")
-
-if choices[player_choice] == choices[computer_choice]:
-    print(f"😳 {name.upper()} AND COMPUTER TIE!")
-elif (choices[player_choice] == "Rock" and choices[computer_choice] == "Scissors") \
-        or (choices[player_choice] == "Paper" and choices[computer_choice] == "Rock") \
-        or (choices[player_choice] == "Scissors" and choices[computer_choice] == "Paper"):
-    print(f"🎉 {name.upper()} WINS!")
-else:
-    print("🤖 COMPUTER WINS!")
+    else:
+        sys.exit("👋 Thanks for playing my game! Byeeee. \n")
