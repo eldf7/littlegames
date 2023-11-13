@@ -49,7 +49,7 @@ def game():
                 player_choice = next(key for key, value in choices.items() if
                                      value == player_choice or key == player_choice)
                 # if int(player_choice) <= limit:
-                #     break
+                break
             except StopIteration:
                 continue
 
