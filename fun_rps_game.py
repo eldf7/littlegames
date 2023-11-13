@@ -2,11 +2,11 @@ import random
 import sys
 
 
-def game():
-    player_win = 0
-    computer_win = 0
-    tie = 0
-    total = 0
+def game_init():
+    __player_win__ = 0
+    __computer_win__ = 0
+    __tie__ = 0
+    __total__ = 0
 
     choices = {
         "1": "Rock",
@@ -16,8 +16,8 @@ def game():
         "5": "Spock"
     }
 
-    def describes(choice1, choice2):
-        descriptors = {
+    def __action_describes__(choice1, choice2):
+        actions = {
             ("Rock", "Scissors"): "crushes",
             ("Rock", "Lizard"): "crushes",
             ("Paper", "Rock"): "covers",
@@ -29,17 +29,17 @@ def game():
             ("Spock", "Rock"): "vaporizes",
             ("Spock", "Scissors"): "smashes"
         }
-        descriptor = descriptors[(choice1, choice2)]
-        return descriptor
+        action = actions[(choice1, choice2)]
+        return action
 
     def play_game(limit):
-        nonlocal player_win
-        nonlocal computer_win
-        nonlocal tie
-        nonlocal total
+        nonlocal __player_win__
+        nonlocal __computer_win__
+        nonlocal __tie__
+        nonlocal __total__
 
         while True:
-            print(f"\n{name}, please select: ")
+            print(f"\n{player_name}, please select: ")
             for key, value in choices.items():
                 if int(key) <= limit:
                     print(f"({key}) {value}")
@@ -58,39 +58,44 @@ def game():
             if int(computer_choice) <= limit:
                 break
 
-        print(f"\n{name} picked {choices[player_choice]}, Computer picked {choices[computer_choice]}")
-        total += 1
+        print(f"\n{player_name} picked {choices[player_choice]}, Computer picked {choices[computer_choice]}")
+        __total__ += 1
 
         if choices[player_choice] == choices[computer_choice]:
-            print(f"😳 {name.upper()} AND COMPUTER TIE!")
-            tie += 1
+            print(f"😳 {player_name.upper()} AND COMPUTER TIE!")
+            __tie__ += 1
         elif (choices[player_choice] == "Rock" and choices[computer_choice] in ["Scissors", "Lizard"]) \
                 or (choices[player_choice] == "Paper" and choices[computer_choice] in ["Rock", "Spock"]) \
                 or (choices[player_choice] == "Scissors" and choices[computer_choice] in ["Paper", "Lizard"]) \
                 or (choices[player_choice] == "Lizard" and choices[computer_choice] in ["Paper", "Spock"]) \
                 or (choices[player_choice] == "Spock" and choices[computer_choice] in ["Rock", "Scissors"]):
-            print(f"-{choices[player_choice]} {describes(choices[player_choice], choices[computer_choice])} {choices[computer_choice]}.\n"
-                  f"🎉 {name.upper()} WINS!")
-            player_win += 1
+            print(
+                f"-{choices[player_choice]} {__action_describes__(choices[player_choice], choices[computer_choice])} {choices[computer_choice]}.\n"
+                f"🎉 {player_name.upper()} WINS!")
+            __player_win__ += 1
         else:
-            print(f"-{choices[computer_choice]} {describes(choices[computer_choice], choices[player_choice])} {choices[player_choice]}.\n"
-                  f"🤖 COMPUTER WINS!")
-            computer_win += 1
+            print(
+                f"-{choices[computer_choice]} {__action_describes__(choices[computer_choice], choices[player_choice])} {choices[player_choice]}.\n"
+                f"🤖 COMPUTER WINS!")
+            __computer_win__ += 1
 
-        print(f"{name}: {player_win} | Computer: {computer_win} | Tie: {tie}")
-        print(f"{total} {'game' if total in [1, -1] else 'games'} played")
+        print(f"{player_name}: {__player_win__} | Computer: {__computer_win__} | Tie: {__tie__}")
+        print(f"{__total__} {'game' if __total__ in [1, -1] else 'games'} played")
 
         repeat_play = input("\n****play again?**** (press y or enter to continue): ").strip().lower()
         if repeat_play in ["y", "yes", ""]:
             play_game(limit)
+        else:
+            sys.exit(f"👋 Thanks for playing my game, {player_name}! Byeeee.\n" * 4)
 
     return play_game
 
 
-name = input("👋 Welcome to my game! What's your name?\n").title()
-a_game = game()
-a_game(3)
-sys.exit(f"👋 Thanks for playing my game, {name}! Byeeee.\n")
+fun_rps = game_init()
+
+if __name__ == "__main__":
+    player_name = input("👋 Welcome to my game! What's your name?\n").title()
+    fun_rps(5)
 
 # Rock > Scissors
 # Spock > Rock
