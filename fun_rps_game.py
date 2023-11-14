@@ -38,7 +38,7 @@ def game_init():
         return action
 
     # Main game loop function
-    def play_game(preference):
+    def play_game(player_name, preference):
         # Declare variables as nonlocal to indicate that they refer to variables in the outer (enclosing) scope.
         # These variables are used to keep track of game statistics and are updated within the play_game function.
         nonlocal __player_win__
@@ -48,7 +48,7 @@ def game_init():
 
         while True:
             # Display the available choices to the player.
-            print(f"\n{player_name}, please select: ")
+            print(f"{player_name}, please select: ")
 
             # Iterate through the choices dictionary to show the options.
             # Only display choices up to the specified preference.
@@ -118,11 +118,11 @@ def game_init():
         # If the input is 'y', 'yes', or an empty string (Enter key pressed), proceed with another round.
         if repeat_play in ["y", "yes", ""]:
             # initiate another round by recursively calling the play_game function with the specified preference.
-            play_game(preference)
+            play_game(player_name, preference)
         else:
             # Otherwise use sys.exit to gracefully terminate the program with a personalized goodbye message to the player.
             # The farewell message includes the player's name and is repeated four times for playfulness.
-            sys.exit(f"👋 Thanks for playing my game, {player_name}! Byeeee.\n" * 4)
+            print(f"👋 Thanks for playing {'RPS' if preference == 3 else 'RPS, Lizard and Spock'}! Byeeee.\n" * 4)
 
     # Return the play_game function, creating a closure.
     # The play_game function retains access to the variables (__player_win__, __computer_win__, __tie__, __total__)
@@ -130,17 +130,15 @@ def game_init():
     return play_game
 
 
-# Initialize the game
-fun_rps = game_init()
-
 # Main program
 if __name__ == "__main__":
+    # Initialize the game
+    fun_rps = game_init()
+
     # Get player's name
-    player_name = input("👋 Welcome to my game! What's your name?\n").title()
+    name = input("👋 Welcome to my game! What's your name?\n").title()
 
     # Start the game with predefined preference.
     # 3 for classic Rock-Paper-Scissors,
     # 5 for improved to Rock-Paper-Scissors-Lizard-Spock
-    classic = 3
-    improved = 5
-    fun_rps(improved)
+    fun_rps(name, 3)
