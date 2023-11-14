@@ -1,4 +1,5 @@
 from fun_rps_game import game_init
+from guessing_number_game import guess_init
 import sys
 
 games = [
@@ -14,7 +15,7 @@ print("")
 def arcade_menu():
     global name
     while True:
-        print(f"{name}, please pick a game:")
+        print(f"{name}, please pick your game:")
         # Iterate through the games to display the choices.
         for index, game in enumerate(games, start=1):
             print(f"{index}. {game}")
@@ -41,7 +42,8 @@ def arcade_menu():
         rpsls(name, 5)
     else:
         print(f"\n👋 Welcome to {games[2]}!")
-        print(f"\nguessing_game(), {name}!\n")
+        guess_number = guess_init()
+        guess_number(name)
 
     # Prompt the player to decide whether to play another round.
     # The input statement waits for the user to provide input, which is then stripped of leading/trailing whitespaces
