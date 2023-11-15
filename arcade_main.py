@@ -8,12 +8,11 @@ games = [
     "Guess My Number"
 ]
 
-name = input(f"WELCOME TO THE ARCADE!\nWhat's your name?\n").title()
-print("")
+__indexed_choice__ = 0
 
 
-def arcade_menu():
-    global name
+def arcade_menu(name):
+    global __indexed_choice__
     while True:
         print(f"{name}, please pick your game:")
         # Iterate through the games to display the choices.
@@ -21,36 +20,38 @@ def arcade_menu():
             print(f"{index}. {game}")
 
         print(f"press x to quit")
-        # Player makes a choice.
-        # The input is stripped of leading/trailing whitespaces and capitalized to ensure correct mapping.
+        # Player makes an index choice.
         choice = input().strip().lower()
         try:
             if choice in ["x", "quit"]:
                 sys.exit(f"👋 Byeeee, {name}!\n" * 4)
+
             elif (int(choice) - 1) in range(len(games)):
+                __indexed_choice__ = int(choice) - 1
                 break
         except ValueError:
             continue
 
-    if int(choice) == 1:
-        print(f"\n👋 Welcome to {games[0]}!")
+    if __indexed_choice__ == 0:
+        print(f"\n👋 Welcome to {games[__indexed_choice__]}!")
         rps = game_init()
+        # Parameter 3 for classic RPS
         rps(name, 3)
-    elif int(choice) == 2:
-        print(f"\n👋 Welcome to {games[1]}!")
+    elif __indexed_choice__ == 1:
+        print(f"\n👋 Welcome to {games[__indexed_choice__]}!")
         rpsls = game_init()
+        # Parameter 5 for improved RPSLS
         rpsls(name, 5)
-    else:
-        print(f"\n👋 Welcome to {games[2]}!")
+    elif __indexed_choice__ == 2:
+        print(f"\n👋 Welcome to {games[__indexed_choice__]}!")
         guess_number = guess_init()
         guess_number(name)
 
-    # Prompt the player to decide whether to play another round.
-    # The input statement waits for the user to provide input, which is then stripped of leading/trailing whitespaces
-    # and converted to lowercase for case-insensitive comparison.
-    print("WELCOME BACK TO THE ARCADE!")
-    arcade_menu()
+    print("🕹 WELCOME BACK TO THE ARCADE!")
+    arcade_menu(name)
 
 
 if __name__ == "__main__":
-    arcade_menu()
+    player_name = input(f"🕹 WELCOME TO THE ARCADE!\nWhat's your name?\n").title()
+    print("")
+    arcade_menu(player_name)

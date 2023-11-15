@@ -19,16 +19,16 @@ def guess_init():
                     print("Thanks for playing!\n")
                     return
                 elif int(guess) != computer_choice:
-                    print("Hmmm...not quite. Try again.")
+                    print("Hmmm...not quite. Guess again.")
                 else:
                     print(f"😳You guessed it! I was thinking of {computer_choice}!")
                     break
             except ValueError:
-                print("Hmmm...not quite. Try again.")
+                print("Hmmm...not quite. Guess again.")
                 continue
 
         repeat_play = input(
-            "\nThanks for playing with me. Want to guess again? (press y or enter to continue): ").strip().lower()
+            "\nThanks for playing with me. Want to guess another? (press y or enter to continue): ").strip().lower()
         # Check if the player wants to play again by examining the entered input.
         # If the input is 'y', 'yes', or an empty string (Enter key pressed), proceed with another round.
         if repeat_play in ["y", "yes", ""]:
