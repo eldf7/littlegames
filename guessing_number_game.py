@@ -16,7 +16,7 @@ def guess_init():
             guess = input()
             try:
                 if guess == "quit":
-                    print("")
+                    print("Thanks for playing!\n")
                     return
                 elif int(guess) != computer_choice:
                     print("Hmmm...not quite. Try again.")
