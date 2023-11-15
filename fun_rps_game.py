@@ -1,7 +1,6 @@
 import random
 import sys
 
-
 # Function to initialize and set up the game environment.
 def game_init():
     # Initialize variables to keep track of game statistics.
@@ -121,8 +120,11 @@ def game_init():
             play_game(player_name, preference)
         else:
             # Otherwise use sys.exit to gracefully terminate the program with a personalized goodbye message to the player.
-            # The farewell message includes the player's name and is repeated four times for playfulness.
-            print(f"👋 Thanks for playing {'RPS' if preference == 3 else 'RPS, Lizard and Spock'}! Byeeee.\n" * 4)
+            if __name__ == "__main__":
+                sys.exit(f"👋 Thanks for playing my game, {player_name}! Byeeeee.\n" * 4)
+            print(
+                f"👋 Thanks for playing {'Rock, Paper, Scissors' if preference == 3 else 'Rock, Paper, Scissors, Lizard, Spock'}! See you next time.\n")
+            return
 
     # Return the play_game function, creating a closure.
     # The play_game function retains access to the variables (__player_win__, __computer_win__, __tie__, __total__)
@@ -137,6 +139,7 @@ if __name__ == "__main__":
 
     # Get player's name
     name = input("👋 Welcome to my game! What's your name?\n").title()
+    print("")
 
     # Start the game with predefined preference.
     # 3 for classic Rock-Paper-Scissors,

@@ -3,8 +3,8 @@ from guessing_number_game import guess_init
 import sys
 
 games = [
-    "RPS",
-    "RPS, Lizard, and Spock",
+    "Rock, Paper, Scissors",
+    "Rock, Paper, Scissors, Lizard, Spock",
     "Guess My Number"
 ]
 
@@ -26,7 +26,7 @@ def arcade_menu():
         choice = input().strip().lower()
         try:
             if choice in ["x", "quit"]:
-                sys.exit(f"👋 Byeeee, {name}!\n")
+                sys.exit(f"👋 Byeeee, {name}!\n" * 4)
             elif (int(choice) - 1) in range(len(games)):
                 break
         except ValueError:
