@@ -3,15 +3,21 @@ import sys
 
 # Function to initialize and set up the game environment.
 def guess_init():
+    __total__ = 0
     # Main game loop function
     def play_guess_number(name):
-        # Computer makes a random choice within 1 to 5
-        minguess = 1
-        maxguess = random.randint(5, 10)
+        nonlocal __total__
+        # Computer makes a random choice within randomly generated max,
+        # and randomly generated min that's at least one less than generated max.
+        maxguess = random.randint(2, 10)
+        minguess = random.randint(1, maxguess - 1)
         computer_choice = random.randint(minguess, maxguess)
 
-        print(f"{name}, guess which number I'm thinking of...\n"
-              f"(hint: it's between {minguess} and {maxguess}...🤫)")
+        print(f"{name}, guess which number I'm thinking of...")
+        if (maxguess - minguess) == 1:
+            print(f"(hint: it's either {minguess} or {maxguess}...🤫)")
+        else:
+            print(f"(hint: it's between {minguess} and {maxguess}, {minguess} and {maxguess} included...🤫)")
         while True:
             guess = input()
             try:
@@ -21,18 +27,24 @@ def guess_init():
                 elif int(guess) != computer_choice:
                     print("Hmmm...not quite. Guess again.")
                 else:
-                    print(f"😳You guessed it! I was thinking of {computer_choice}!")
+                    if (maxguess - minguess) == 1:
+                        print(f"😄You guessed it! I was thinking of {computer_choice}!")
+                    else:
+                        print(f"😳You guessed it! I was thinking of {computer_choice}!")
+                    __total__ += 1
                     break
             except ValueError:
                 print("Hmmm...not quite. Guess again.")
                 continue
 
         repeat_play = input(
-            "\nThanks for playing with me. Want to guess another? (press y or enter to continue): ").strip().lower()
+            f"\nThanks for playing with me. Want to guess another? \n"
+            f"({__total__} {'number' if __total__ in [1, -1] else 'numbers'} guessed, press y or enter to play again): ").strip().lower()
         # Check if the player wants to play again by examining the entered input.
         # If the input is 'y', 'yes', or an empty string (Enter key pressed), proceed with another round.
         if repeat_play in ["y", "yes", ""]:
-            # initiate another round by recursively calling the play_guess_number function with the specified preference.
+            # initiate another round by recursively calling the play_guess_number function with name.
+            print("")
             play_guess_number(name)
         else:
             if __name__ == "__main__":
@@ -48,11 +60,11 @@ if __name__ == "__main__":
     # Initialize the game
     guessing_game = guess_init()
 
-    # Get player's name
-    player_name = input("👋 Welcome to my game! What's your name?\n").title()
-    print("")
+    # Get and validate player's name
+    while True:
+        player_name = input("👋 Welcome to my game! What's your name?\n").strip().title()
+        if player_name:
+            print("")
+            break
 
-    # Start the game with predefined preference.
-    # 3 for classic Rock-Paper-Scissors,
-    # 5 for improved to Rock-Paper-Scissors-Lizard-Spock
     guessing_game(player_name)

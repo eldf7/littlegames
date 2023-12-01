@@ -8,6 +8,14 @@ games = [
     "Guess My Number"
 ]
 
+ascii_art = """
+ ∧＿∧
+(｡･ω･｡)つ ━ ☆・*。 　
+⊂　　 /　　 ・゜+. 　
+しーＪ　　　°。+ *´¨)
+ 　　　　      .· ´*
+                """
+
 __indexed_choice__ = 0
 
 
@@ -20,16 +28,19 @@ def arcade_menu(name):
             print(f"{index}. {game}")
 
         print(f"press x to quit")
-        # Player makes an index choice.
+        # Player makes a choice, stripped spaces, and converge to lowercase.
         choice = input().strip().lower()
         try:
             if choice in ["x", "quit"]:
-                sys.exit(f"👋 Byeeee, {name}!\n" * 4)
+                print(f"👋 Byeeee, {name}!\n" * 4)
+                sys.exit(f"{ascii_art}")
 
+            # Convert player choice to indexed choice for array use.
             elif (int(choice) - 1) in range(len(games)):
                 __indexed_choice__ = int(choice) - 1
                 break
         except ValueError:
+            print("")
             continue
 
     if __indexed_choice__ == 0:
@@ -52,6 +63,10 @@ def arcade_menu(name):
 
 
 if __name__ == "__main__":
-    player_name = input(f"🕹 WELCOME TO THE ARCADE!\nWhat's your name?\n").title()
-    print("")
-    arcade_menu(player_name)
+    print("🕹 WELCOME TO THE ARCADE!")
+    while True:
+        player_name = input(f"What's your name?\n").strip().title()
+        if player_name:
+            print("")
+            arcade_menu(player_name)
+

@@ -1,6 +1,7 @@
 import random
 import sys
 
+
 # Function to initialize and set up the game environment.
 def game_init():
     # Initialize variables to keep track of game statistics.
@@ -69,6 +70,7 @@ def game_init():
                 # if int(player_choice) <= preference:
                 break
             except StopIteration:
+                print("")
                 continue
 
         # Computer makes a random choice within preference
@@ -137,11 +139,19 @@ if __name__ == "__main__":
     # Initialize the game
     fun_rps = game_init()
 
-    # Get player's name
-    name = input("👋 Welcome to my game! What's your name?\n").title()
-    print("")
+    # Get and validate player's name
+    while True:
+        name = input("👋 Welcome to my game! What's your name?\n").strip().title()
+        if name:
+            print("")
+            break
 
-    # Start the game with predefined preference.
-    # 3 for classic Rock-Paper-Scissors,
-    # 5 for improved to Rock-Paper-Scissors-Lizard-Spock
-    fun_rps(name, 3)
+    # Start the game with surprise game mode.
+    # 3 for classic 3 choice of Rock-Paper-Scissors,
+    # 5 for improved 5 choice of Rock-Paper-Scissors-Lizard-Spock
+    mode = random.choice([3, 5])
+    if mode == 3:
+        print("Rock, Paper, Scissors!")
+    else:
+        print("It's Rock, Paper, Scissors, Lizard, Spock!")
+    fun_rps(name, mode)
