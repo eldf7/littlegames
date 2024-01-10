@@ -1,12 +1,15 @@
 import random
 import sys
 
+
 # Function to initialize and set up the game environment.
 def guess_init():
     __total__ = 0
+
     # Main game loop function
     def play_guess_number(name):
         nonlocal __total__
+        __guess_count__ = 0
         # Computer makes a random choice within randomly generated max,
         # and randomly generated min that's at least one less than generated max.
         maxguess = random.randint(2, 10)
@@ -20,6 +23,7 @@ def guess_init():
             print(f"(hint: it's between {minguess} and {maxguess}, {minguess} and {maxguess} included...🤫)")
         while True:
             guess = input()
+            __guess_count__ += 1
             try:
                 if guess == "quit":
                     print("Thanks for playing!\n")
@@ -27,14 +31,14 @@ def guess_init():
                 elif int(guess) != computer_choice:
                     print("Hmmm...not quite. Guess again.")
                 else:
-                    if (maxguess - minguess) == 1:
-                        print(f"😄You guessed it! I was thinking of {computer_choice}!")
-                    else:
+                    if __guess_count__ / ((maxguess - minguess) + 1) < 0.5:
                         print(f"😳You guessed it! I was thinking of {computer_choice}!")
+                    else:
+                        print(f"😄You guessed it! I was thinking of {computer_choice}!")
                     __total__ += 1
                     break
             except ValueError:
-                print("Hmmm...not quite. Guess again.")
+                print("Please enter a valid number or type 'quit' to quit.")
                 continue
 
         repeat_play = input(
