@@ -154,11 +154,11 @@ if __name__ == "__main__":
 
         else:
             print(
-                "Need command-line option for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
+                "Need an argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
             sys.exit(1)
     except ValueError:
         print(
-            "Need command-line option for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
+            "Need an argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
         sys.exit(1)
 
 
