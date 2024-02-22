@@ -136,27 +136,30 @@ def game_init():
 
 # Main program
 if __name__ == "__main__":
-    try: 
+    try:
         if len(sys.argv) == 2 and int(sys.argv[1]) in (3, 5):
             # Initialize the game
             fun_rps = game_init()
-    
+
             # Get and validate player's name
             while True:
                 name = input("👋 Welcome to my game! What's your name?\n").strip().title()
                 if name:
                     print("")
                     break
-    
+
             # 3 for classic 3 choice of Rock-Paper-Scissors,
             # 5 for improved 5 choice of Rock-Paper-Scissors-Lizard-Spock as chosen by player through command-line option
             fun_rps(name, int(sys.argv[1]))
-        
+
         else:
-            print("Need command-line option for initialization: \n3 for Rock, Paper, Scissors. \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
+            print(
+                "Need command-line option for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
             sys.exit(1)
     except ValueError:
-        print("Need command-line option for initialization: \n3 for Rock, Paper, Scissors. \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
+        print(
+            "Need command-line option for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
         sys.exit(1)
-        
-            
+
+
+
