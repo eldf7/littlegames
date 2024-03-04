@@ -156,10 +156,10 @@ if __name__ == "__main__":
             print(
                 "Need an argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
             sys.exit(1)
+            sys.exit(
     except ValueError:
-        print(
-            "Need an argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
-        sys.exit(1)
+        sys.exit(
+            "Need argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
 
 
 
