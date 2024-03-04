@@ -153,10 +153,8 @@ if __name__ == "__main__":
             fun_rps(name, int(sys.argv[1]))
 
         else:
-            print(
-                "Need an argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
-            sys.exit(1)
             sys.exit(
+                "Need argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
     except ValueError:
         sys.exit(
             "Need argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
