@@ -159,7 +159,7 @@ if __name__ == "__main__":
 
     else:
         sys.exit(
-            "Choose [3] or [5] as option to initialize: \n[3] for Rock, Paper, Scissors \n[5] for Rock, Paper, Scissors, Lizard, Spock\n")
+            "Add [-o 3] or [-o 5] as option to initialize: \n[-o 3] for Rock, Paper, Scissors \n[-o 5] for Rock, Paper, Scissors, Lizard, Spock\n")
 
 
 
