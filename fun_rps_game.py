@@ -1,5 +1,6 @@
 import random
 import sys
+import argparse
 
 
 # Function to initialize and set up the game environment.
@@ -136,28 +137,29 @@ def game_init():
 
 # Main program
 if __name__ == "__main__":
-    try:
-        if len(sys.argv) == 2 and int(sys.argv[1]) in (3, 5):
-            # Initialize the game
-            fun_rps = game_init()
+    # Command line options parsing
+    parser = argparse.ArgumentParser(description='Game: "Rock, Paper, Scissors" or "Rock, Papers, Scissors, Spock"')
+    parser.add_argument("-o",
+                        help='Accepts [3] or [5] as valid options. [-o 3] for classic "Rock, Paper, Scissors". [-o 5] for improved "Rock, Paper, Scissors, Lizard, Spock"',
+                        type=int)
+    parsed_args = parser.parse_args()
 
-            # Get and validate player's name
-            while True:
-                name = input("👋 Welcome to my game! What's your name?\n").strip().title()
-                if name:
-                    print("")
-                    break
+    if parsed_args.o in (3, 5):
+        # Initialize the game either classic or improved
+        fun_rps = game_init()
 
-            # 3 for classic 3 choice of Rock-Paper-Scissors,
-            # 5 for improved 5 choice of Rock-Paper-Scissors-Lizard-Spock as chosen by player through command-line option
-            fun_rps(name, int(sys.argv[1]))
+        # Get and validate player's name
+        while True:
+            name = input("👋 Welcome to my game! What's your name?\n").strip().title()
+            if name:
+                print("")
+                break
 
-        else:
-            sys.exit(
-                "Need argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
-    except ValueError:
+        fun_rps(name, parsed_args.o)
+
+    else:
         sys.exit(
-            "Need argument for initialization: \n3 for Rock, Paper, Scissors \n5 for Rock, Paper, Scissors, Lizard, Spock\n")
+            "Choose [3] or [5] as option to initialize: \n[3] for Rock, Paper, Scissors \n[5] for Rock, Paper, Scissors, Lizard, Spock\n")
 
 
 
